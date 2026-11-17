@@ -283,11 +283,13 @@
         </div>
       </div>
 
-      <footer>
+<footer>
         DEIC MOBILE - © Desenvolvido pela UIP - Versão 2026.1
       </footer>
     </div>
   </div>
+
+  <div id="toast">✅ Texto copiado! Pronto para colar no WhatsApp.</div>
 
   <script>
     function formatarDataBR(dataISO) {
@@ -309,12 +311,9 @@
       document.getElementById("res-localfato").textContent = f.localfato.value;
       document.getElementById("res-historico").textContent = f.historico.value;
 
-      <div id="toast">✅ Texto copiado! Pronto para colar no WhatsApp.</div>
-      
       const textoFinal = document.getElementById("resultado").innerText.trim();
 
-      
-if (navigator.clipboard && window.isSecureContext) {
+      if (navigator.clipboard && window.isSecureContext) {
         navigator.clipboard.writeText(textoFinal).then(() => {
           mostrarToast();
         }).catch(() => {
@@ -328,10 +327,12 @@ if (navigator.clipboard && window.isSecureContext) {
     function copiarFallback(texto) {
       const textarea = document.createElement("textarea");
       textarea.value = texto;
+      textarea.setAttribute("readonly", "");
       textarea.style.position = "fixed";
-      textarea.style.opacity = "0";
+      textarea.style.left = "-9999px";
       document.body.appendChild(textarea);
       textarea.select();
+      textarea.setSelectionRange(0, 99999);
       document.execCommand("copy");
       document.body.removeChild(textarea);
       mostrarToast();
@@ -346,7 +347,5 @@ if (navigator.clipboard && window.isSecureContext) {
     }
   </script>
 
-
-  
 </body>
 </html>
