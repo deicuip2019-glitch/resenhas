@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<!-- Desenvolvido por Marcos Matos e Vinicius Coelho 2020 - Atualizado 2026 -->
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GERADOR DE RESENHAS ONLINE</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+    }
+    body {
+      background-color: #f0f2f5;
+      margin: 0;
+      padding: 16px;
+      color: #1f2937;
+    }
+    .container {
+      max-width: 780px;
+      margin: 0 auto;
+      background: #ffffff;
+      border-radius: 10px;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+      overflow: hidden;
+    }
+    .banner {
+      width: 100%;
+      background: #000;
+      text-align: center;
+    }
+    .banner img {
+      max-width: 100%;
+      height: auto;
+      display: block;
+      margin: 0 auto;
+    }
+    .content {
+      padding: 24px;
+    }
+    h1 {
+      text-align: center;
+      font-size: 22px;
+      margin: 0 0 8px 0;
+      color: #111827;
+    }
+    .divider {
+      height: 2px;
+      background-color: #111827;
+      margin-bottom: 20px;
+    }
+    .subtitle {
+      font-weight: bold;
+      margin-bottom: 16px;
+      display: block;
+    }
+    .row {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+      margin-bottom: 14px;
+    }
+    .field {
+      flex: 1;
+      min-width: 220px;
+      display: flex;
+      flex-direction: column;
+    }
+    .field-full {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      margin-bottom: 14px;
+    }
+    label {
+      font-size: 14px;
+      font-weight: 600;
+      margin-bottom: 6px;
+      color: #374151;
+    }
+    input[type="text"],
+    input[type="date"],
+    select,
+    textarea {
+      width: 100%;
+      padding: 10px 12px;
+      border: 1px solid #cbd5e1;
+      border-radius: 6px;
+      font-size: 15px;
+      background-color: #fff;
+    }
+    input:focus,
+    select:focus,
+    textarea:focus {
+      outline: none;
+      border-color: #245996;
+      box-shadow: 0 0 0 2px rgba(36, 89, 150, 0.15);
+    }
+    textarea {
+      resize: vertical;
+      min-height: 140px;
+    }
+    .btn-gerar {
+      width: 100%;
+      padding: 14px;
+      background-color: #245996;
+      color: #ffffff;
+      border: none;
+      border-radius: 6px;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+      margin-top: 8px;
+      transition: background-color 0.2s;
+    }
+    .btn-gerar:hover {
+      background-color: #1b4372;
+    }
+    .resultado-wrapper {
+      margin-top: 24px;
+    }
+    .resultado-label {
+      font-weight: bold;
+      display: block;
+      margin-bottom: 8px;
+      font-size: 15px;
+    }
+    #resultado {
+      width: 100%;
+      min-height: 160px;
+      padding: 16px;
+      border: 2px solid #111827;
+      border-radius: 6px;
+      background-color: #f8fafc;
+      line-height: 1.5;
+      word-wrap: break-word;
+    }
+    #resultado p {
+      margin: 6px 0;
+    }
+    .destaque-azul {
+      color: #245996;
+      font-weight: bold;
+    }
+    #historico {
+      text-align: justify;
+      white-space: pre-wrap;
+    }
+    footer {
+      text-align: center;
+      font-size: 13px;
+      color: #6b7280;
+      margin-top: 24px;
+      padding-top: 16px;
+      border-top: 1px solid #e5e7eb;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <div class="banner">
+      <img src="resenha_online.png" alt="Gerador de Resenhas Online">
+    </div>
+
+    <div class="content">
+      <h1>GERADOR DE RESENHAS</h1>
+      <div class="divider"></div>
+
+      <span class="subtitle">Preencha as informações abaixo:</span>
+
+      <form id="formResenha">
+        <div class="row">
+          <div class="field">
+            <label for="delegacia">Delegacia</label>
+            <select id="delegacia" name="delegacia">
+              <option value="*1ª DISCCPAT*">1ª DISCCPAT</option>
+              <option value="*2ª DISCCPAT*">2ª DISCCPAT</option>
+              <option value="*3ª DISCCPAT*">3ª DISCCPAT</option>
+              <option value="*4ª DISCCPAT*">4ª DISCCPAT</option>
+              <option value="*5ª DISCCPAT*">5ª DISCCPAT</option>
+              <option value="*6ª DISCCPAT*">6ª DISCCPAT</option>
+              <option value="*1ª DIVECAR*">1ª DIVECAR</option>
+              <option value="*2ª DIVECAR*">2ª DIVECAR</option>
+              <option value="*3ª DIVECAR*">3ª DIVECAR</option>
+              <option value="*4ª DIVECAR*">4ª DIVECAR</option>
+              <option value="*1ª DIG*">1ª DIG</option>
+              <option value="*2ª DIG*">2ª DIG</option>
+              <option value="*3ª DIG*">3ª DIG</option>
+              <option value="*1ª DICCIBER*">1ª DICCIBER</option>
+              <option value="*2ª DICCIBER*">2ª DICCIBER</option>
+              <option value="*3ª DICCIBER*">3ª DICCIBER</option>
+              <option value="*4ª DICCIBER*">4ª DICCIBER</option>
+            </select>
+          </div>
+
+          <div class="field">
+            <label for="ocorrencia">Tipo de Ocorrência</label>
+            <select id="ocorrencia" name="ocorrencia">
+              <option value="*FLAGRANTE*">FLAGRANTE</option>
+              <option value="*TERMO CIRCUNSTANCIADO*">TERMO CIRCUNSTANCIADO</option>
+              <option value="*BOLETIM DE OCORRÊNCIA*">BOLETIM DE OCORRÊNCIA</option>
+              <option value="*ATO INFRACIONAL*">ATO INFRACIONAL</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="field">
+            <label for="rdo">RDO</label>
+            <input type="text" id="rdo" name="rdo" value="">
+          </div>
+
+          <div class="field">
+            <label for="data">Data</label>
+            <input type="date" id="data" name="data">
+          </div>
+        </div>
+
+        <div class="field-full">
+          <label for="natureza">Natureza</label>
+          <input type="text" id="natureza" name="natureza" onkeyup="this.value = this.value.toUpperCase();" value="">
+        </div>
+
+        <div class="field-full">
+          <label for="envolvidos">Envolvidos</label>
+          <input type="text" id="envolvidos" name="envolvidos" onkeyup="this.value = this.value.toUpperCase();" placeholder="ex.: 1 PRESO, 1 MENOR INFRATOR, 2 INDICIADOS" value="">
+        </div>
+
+        <div class="field-full">
+          <label for="localfato">Local do Fato</label>
+          <input type="text" id="localfato" name="localfato" value="">
+        </div>
+
+        <div class="field-full">
+          <label for="historico">Histórico da Ocorrência</label>
+          <textarea id="historico" name="historico"></textarea>
+        </div>
+
+        <button type="button" class="btn-gerar" onclick="gerarECopiar()">Gerar Resenha</button>
+      </form>
+
+      <div class="resultado-wrapper">
+        <span class="resultado-label">RESENHA</span>
+        <div id="resultado">
+          <p id="res-delegacia" class="destaque-azul"></p>
+          <p id="res-rdo"></p>
+          <p id="res-natureza"></p>
+          <p id="res-ocorrencia" class="destaque-azul"></p>
+          <p id="res-envolvidos"></p>
+          <p id="res-localfato"></p>
+          <p id="res-historico"></p>
+        </div>
+      </div>
+
+      <footer>
+        © Copyright 2020 DEIC - UIP - NÃO ESQUEÇA DE FAVORITAR A PÁGINA
+      </footer>
+    </div>
+  </div>
+
+  <script>
+    function formatarDataBR(dataISO) {
+      if (!dataISO) return "";
+      const partes = dataISO.split("-");
+      if (partes.length !== 3) return dataISO;
+      return `${partes[2]}/${partes[1]}/${partes[0]}`;
+    }
+
+    function gerarECopiar() {
+      const f = document.getElementById("formResenha");
+      const dataFormatada = formatarDataBR(f.data.value);
+
+      document.getElementById("res-delegacia").textContent = f.delegacia.value;
+      document.getElementById("res-rdo").textContent = "RDO: " + f.rdo.value + " | Data: " + dataFormatada;
+      document.getElementById("res-natureza").textContent = f.natureza.value;
+      document.getElementById("res-ocorrencia").textContent = f.ocorrencia.value;
+      document.getElementById("res-envolvidos").textContent = f.envolvidos.value;
+      document.getElementById("res-localfato").textContent = f.localfato.value;
+      document.getElementById("res-historico").textContent = f.historico.value;
+
+      const textoFinal = document.getElementById("resultado").innerText.trim();
+
+      if (navigator.clipboard && window.isSecureContext) {
+        navigator.clipboard.writeText(textoFinal).then(() => {
+          alert("O TEXTO JÁ FOI COPIADO E ESTÁ PRONTO PARA SER ENCAMINHADO VIA WHATSAPP.");
+        }).catch(() => {
+          copiarFallback(textoFinal);
+        });
+      } else {
+        copiarFallback(textoFinal);
+      }
+    }
+
+    function copiarFallback(texto) {
+      const textarea = document.createElement("textarea");
+      textarea.value = texto;
+      textarea.style.position = "fixed";
+      textarea.style.opacity = "0";
+      document.body.appendChild(textarea);
+      textarea.select();
+      document.execCommand("copy");
+      document.body.removeChild(textarea);
+      alert("O TEXTO JÁ FOI COPIADO E ESTÁ PRONTO PARA SER ENCAMINHADO VIA WHATSAPP.");
+    }
+  </script>
+
+</body>
+</html>
