@@ -154,6 +154,36 @@
       padding-top: 16px;
       border-top: 1px solid #e5e7eb;
     }
+
+#toast {
+      visibility: hidden;
+      min-width: 280px;
+      max-width: 90%;
+      background-color: #16a34a;
+      color: #ffffff;
+      text-align: center;
+      border-radius: 8px;
+      padding: 14px 20px;
+      position: fixed;
+      z-index: 9999;
+      left: 50%;
+      bottom: 24px;
+      transform: translateX(-50%) translateY(20px);
+      font-size: 14px;
+      font-weight: 600;
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
+      opacity: 0;
+      transition: opacity 0.3s ease, transform 0.3s ease;
+    }
+    #toast.mostrar {
+      visibility: visible;
+      opacity: 1;
+      transform: translateX(-50%) translateY(0);
+    }
+
+
+
+    
   </style>
 </head>
 <body>
@@ -254,7 +284,7 @@
       </div>
 
       <footer>
-        Portal DEIC - © Desenvolvido pela UIP - Versão 2026.1
+        DEIC MOBILE - © Desenvolvido pela UIP - Versão 2026.1
       </footer>
     </div>
   </div>
@@ -279,11 +309,14 @@
       document.getElementById("res-localfato").textContent = f.localfato.value;
       document.getElementById("res-historico").textContent = f.historico.value;
 
+      <div id="toast">✅ Texto copiado! Pronto para colar no WhatsApp.</div>
+      
       const textoFinal = document.getElementById("resultado").innerText.trim();
 
-      if (navigator.clipboard && window.isSecureContext) {
+      
+if (navigator.clipboard && window.isSecureContext) {
         navigator.clipboard.writeText(textoFinal).then(() => {
-          alert("O TEXTO JÁ FOI COPIADO. COLE E ENVIE PELO WHATSAPP.");
+          mostrarToast();
         }).catch(() => {
           copiarFallback(textoFinal);
         });
@@ -301,9 +334,19 @@
       textarea.select();
       document.execCommand("copy");
       document.body.removeChild(textarea);
-      alert("O TEXTO JÁ FOI COPIADO E ESTÁ PRONTO PARA SER ENCAMINHADO VIA WHATSAPP.");
+      mostrarToast();
+    }
+
+    function mostrarToast() {
+      const toast = document.getElementById("toast");
+      toast.classList.add("mostrar");
+      setTimeout(() => {
+        toast.classList.remove("mostrar");
+      }, 3000);
     }
   </script>
 
+
+  
 </body>
 </html>
