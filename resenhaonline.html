@@ -283,7 +283,7 @@
 
       if (navigator.clipboard && window.isSecureContext) {
         navigator.clipboard.writeText(textoFinal).then(() => {
-          alert("O TEXTO JÁ FOI COPIADO E ESTÁ PRONTO PARA SER ENCAMINHADO VIA WHATSAPP.");
+          alert("O TEXTO JÁ FOI COPIADO. COLE E ENVIE PELO WHATSAPP.");
         }).catch(() => {
           copiarFallback(textoFinal);
         });
